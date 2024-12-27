@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ERROR_MESSAGE } from '@/constant/error.js';
 
 const getFetchNews = async (query) => {
   return axios.get('https://openapi.naver.com/v1/search/news.json', {
@@ -27,9 +28,9 @@ export const GET = async (req) => {
       headers: jsonHeaders,
     });
   } catch (error) {
-    console.error('[ERROR] 뉴스 API 호출 실패: ', error.message);
+    console.error(ERROR_MESSAGE.API.call, error.message);
 
-    return new Response(JSON.stringify({ error: '[ERROR] 뉴스를 불러오지 못했습니다.' }), {
+    return new Response(JSON.stringify({ error: ERROR_MESSAGE.API.fetch }), {
       status: 500,
       headers: jsonHeaders,
     });

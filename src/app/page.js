@@ -1,4 +1,5 @@
 'use client';
+import { ERROR_MESSAGE } from '@/constant/error.js';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
         const data = await response.json();
         setNews(data.items || []);
       } catch (err) {
-        setError('[ERROR] 뉴스를 가져오지 못했습니다.');
+        setError(ERROR_MESSAGE.API.fetch);
       } finally {
         setLoading(false);
       }
