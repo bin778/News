@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ERROR_MESSAGE } from '@/constant/error.js';
+import { jsonHeaders } from '@/constant/json.js';
 
 const getFetchNews = async (query) => {
   return axios.get('https://openapi.naver.com/v1/search/news.json', {
@@ -15,11 +16,9 @@ const getFetchNews = async (query) => {
   });
 };
 
-const jsonHeaders = { 'Content-Type': 'application/json' };
-
 export const GET = async (req) => {
   const { searchParams } = new URL(req.url);
-  const query = searchParams.get('query') || 'Next.js';
+  const query = searchParams.get('query') || '뉴스';
 
   try {
     const response = await getFetchNews(query);
