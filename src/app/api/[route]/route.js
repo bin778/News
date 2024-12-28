@@ -27,7 +27,7 @@ export const GET = async (req) => {
       headers: jsonHeaders,
     });
   } catch (error) {
-    console.error(ERROR_MESSAGE.API.call, error.message);
+    console.error(ERROR_MESSAGE.API.call + error.message);
 
     return new Response(JSON.stringify({ error: ERROR_MESSAGE.API.fetch }), {
       status: 500,

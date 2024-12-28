@@ -9,13 +9,13 @@ function removeHtmlTags(text) {
 
 function NewList({ news }) {
   return (
-    <ul>
+    <ul className="newsList">
       {news.map((item, index) => (
-        <li key={index}>
-          <a href={item.link} target="_blank" rel="noopener noreferrer">
+        <li key={index} className="newsCard">
+          <a href={item.link} target="_blank" rel="noopener noreferrer" className="link">
             {removeHtmlTags(item.title)}
           </a>
-          <p>{removeHtmlTags(item.description)}</p>
+          <p className="description">{removeHtmlTags(item.description)}</p>
         </li>
       ))}
     </ul>
@@ -43,12 +43,12 @@ export default function Home() {
     fetchNews();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="loading">Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
 
   return (
-    <div>
-      <h1>네이버 뉴스</h1>
+    <div className="container">
+      <h1 className="title">News List</h1>
       <NewList news={news} />
     </div>
   );
