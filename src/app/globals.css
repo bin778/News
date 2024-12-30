@@ -64,3 +64,49 @@ body {
 .error {
   color: #f00;
 }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 600px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .newsCard {
+    padding: 10px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .loading,
+  .error {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 450px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .newsCard {
+    padding: 6px;
+  }
+
+  .description {
+    font-size: 0.7rem;
+  }
+
+  .loading,
+  .error {
+    font-size: 0.9rem;
+  }
+}
