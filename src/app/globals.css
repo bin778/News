@@ -22,6 +22,17 @@ body {
   margin-bottom: 10px;
 }
 
+.searchInput {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
 .newsList {
   list-style-type: none;
   padding: 0;
@@ -74,6 +85,14 @@ body {
     font-size: 2rem;
   }
 
+  .searchInput {
+    width: 90%;
+    max-width: 350px;
+    margin: 8px auto 16px;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
   .newsCard {
     padding: 10px;
   }
@@ -95,6 +114,14 @@ body {
 
   .title {
     font-size: 1.6rem;
+  }
+
+  .searchInput {
+    width: 80%;
+    max-width: 300px;
+    margin: 6px auto 12px;
+    padding: 6px;
+    font-size: 0.8rem;
   }
 
   .newsCard {

@@ -20,6 +20,7 @@ const NewsList = ({ news }) => (
 
 const Home = () => {
   const [state, setState] = useState({ news: [], loading: true, error: null });
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchNews = async () => {
     try {
@@ -31,6 +32,12 @@ const Home = () => {
     }
   };
 
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+
+  const filteredNews = state.news.filter((item) =>
+    removeHtmlTags(item.title).toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   useEffect(() => {
     fetchNews();
   }, []);
@@ -41,7 +48,14 @@ const Home = () => {
   return (
     <div className="container">
       <h1 className="title">News List</h1>
-      <NewsList news={state.news} />
+      <input
+        type="text"
+        placeholder="검색어를 입력하세요"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        className="searchInput"
+      />
+      <NewsList news={filteredNews} />
     </div>
   );
 };
