@@ -1,3 +1,4 @@
+'use client';
 const ERROR_FLAG = '[ERROR]';
 
 export const ERROR_MESSAGE = Object.freeze({

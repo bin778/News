@@ -1,4 +1,4 @@
-import { removeHtmlTagsRegex } from '@/constant/regex';
+import { removeHtmlTagsRegex } from '../constant/regex.js';
 
 export const removeHtmlTags = (text) => text.replace(removeHtmlTagsRegex, '');
 

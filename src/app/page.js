@@ -1,7 +1,7 @@
 'use client';
-import { ERROR_MESSAGE } from '@/constant/error.js';
+import { ERROR_MESSAGE } from './constant/error.js';
 import { useEffect, useState } from 'react';
-import { filterNewsByKeyword } from '@/util/filter.js';
+import { filterNewsByKeyword } from './utils/filter.js';
 
 const NewsList = ({ news }) => (
   <ul className="newsList">

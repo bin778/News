@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ERROR_MESSAGE } from '@/constant/error.js';
-import { jsonHeaders, apiURL, headers } from '@/constant/headers.js';
+import { ERROR_MESSAGE } from '@/app/constant/error.js';
+import { jsonHeaders, apiURL, headers } from '@/app/constant/headers.js';
 
 export const GET = async (req) => {
   const query = new URL(req.url).searchParams.get('query') || '뉴스';
