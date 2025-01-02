@@ -1,18 +1,16 @@
 'use client';
 import { ERROR_MESSAGE } from '@/constant/error.js';
-import { removeHtmlTagsRegex } from '@/constant/regex.js';
 import { useEffect, useState } from 'react';
-
-const removeHtmlTags = (text) => text.replace(removeHtmlTagsRegex, '');
+import { filterNewsByKeyword } from '@/util/filter.js';
 
 const NewsList = ({ news }) => (
   <ul className="newsList">
     {news.map((item, index) => (
       <li key={index} className="newsCard">
         <a href={item.link} target="_blank" rel="noopener noreferrer" className="link">
-          {removeHtmlTags(item.title)}
+          {item.title}
         </a>
-        <p className="description">{removeHtmlTags(item.description)}</p>
+        <p className="description">{item.description}</p>
       </li>
     ))}
   </ul>
@@ -34,14 +32,8 @@ const Home = () => {
   };
 
   const handleSearchChange = (e) => setSearchKeyword(e.target.value);
-
-  const handleSearchApply = () => {
-    setApplyKeyword(searchKeyword);
-  };
-
-  const filterNews = state.news.filter((item) =>
-    removeHtmlTags(item.title).toLowerCase().includes(applyKeyword.toLowerCase())
-  );
+  const handleSearchApply = () => setApplyKeyword(searchKeyword);
+  const filteredNews = filterNewsByKeyword(state.news, applyKeyword);
 
   useEffect(() => {
     fetchNews();
@@ -63,7 +55,7 @@ const Home = () => {
       <button onClick={handleSearchApply} className="searchButton">
         검색
       </button>
-      <NewsList news={filterNews} />
+      <NewsList news={filteredNews} />
     </div>
   );
 };

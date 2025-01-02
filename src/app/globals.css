@@ -91,12 +91,17 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .body {
+    line-height: 1.4;
+  }
+
   .container {
     max-width: 600px;
   }
 
   .title {
     font-size: 2rem;
+    line-height: 1.2;
   }
 
   .searchInput {
@@ -132,12 +137,17 @@ body {
 }
 
 @media (max-width: 767px) {
+  .body {
+    line-height: 1.3;
+  }
+
   .container {
     max-width: 450px;
   }
 
   .title {
     font-size: 1.6rem;
+    line-height: 1.1;
   }
 
   .searchInput {
