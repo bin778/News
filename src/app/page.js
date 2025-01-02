@@ -23,6 +23,12 @@ const Home = () => {
     loadNews();
   }, []);
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearchApply();
+    }
+  };
+
   if (state.loading) return <p className="loading">Loading...</p>;
   if (state.error) return <p className="error">{state.error}</p>;
 
@@ -34,6 +40,7 @@ const Home = () => {
         placeholder="검색어를 입력하세요"
         value={searchKeyword}
         onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
         className="searchInput"
       />
       <button onClick={handleSearchApply} className="searchButton">
