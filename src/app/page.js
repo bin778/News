@@ -2,41 +2,25 @@
 import { ERROR_MESSAGE } from './constant/error.js';
 import { useEffect, useState } from 'react';
 import { filterNewsByKeyword } from './utils/filter.js';
-
-const NewsList = ({ news }) => (
-  <ul className="newsList">
-    {news.map((item, index) => (
-      <li key={index} className="newsCard">
-        <a href={item.link} target="_blank" rel="noopener noreferrer" className="link">
-          {item.title}
-        </a>
-        <p className="description">{item.description}</p>
-      </li>
-    ))}
-  </ul>
-);
+import { fetchNews } from './api/api.js';
+import { NewsList } from './component/NewsList.js';
+import { useSearchKeyword } from './hooks/useSearchKeyword.js';
 
 const Home = () => {
   const [state, setState] = useState({ news: [], loading: true, error: null });
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [applyKeyword, setApplyKeyword] = useState('');
-
-  const fetchNews = async () => {
-    try {
-      const response = await fetch('/api/news?query=');
-      const data = await response.json();
-      setState({ news: data.items || [], loading: false, error: null });
-    } catch {
-      setState({ news: [], loading: false, error: ERROR_MESSAGE.API.fetch });
-    }
-  };
-
-  const handleSearchChange = (e) => setSearchKeyword(e.target.value);
-  const handleSearchApply = () => setApplyKeyword(searchKeyword);
+  const { searchKeyword, applyKeyword, handleSearchChange, handleSearchApply } = useSearchKeyword();
   const filteredNews = filterNewsByKeyword(state.news, applyKeyword);
 
   useEffect(() => {
-    fetchNews();
+    const loadNews = async () => {
+      try {
+        const newsItems = await fetchNews();
+        setState({ news: newsItems, loading: false, error: null });
+      } catch {
+        setState({ news: [], loading: false, error: ERROR_MESSAGE.API.fetch });
+      }
+    };
+    loadNews();
   }, []);
 
   if (state.loading) return <p className="loading">Loading...</p>;
