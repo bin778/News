@@ -1,18 +1,18 @@
 import axios from 'axios';
-import { ERROR_MESSAGE } from '@/app/constant/error.js';
 import { jsonHeaders, apiURL, headers } from '@/app/constant/headers.js';
+import { DATA } from '@/app/constant/data.js';
 
 export const GET = async (req) => {
   const query = new URL(req.url).searchParams.get('query') || '뉴스';
-
   try {
     const { data } = await axios.get(apiURL, {
-      params: { query, display: 100, start: 1 },
+      params: { query, display: DATA.NEWS.display, start: DATA.NEWS.start },
       headers: headers,
     });
     return new Response(JSON.stringify(data), { status: 200, headers: jsonHeaders });
   } catch (error) {
-    console.error(`${ERROR_MESSAGE.API.call} ${error.message}`);
-    return new Response(JSON.stringify({ error: ERROR_MESSAGE.API.fetch }), { status: 500, headers: jsonHeaders });
+    const errorMessage = `뉴스 API 호출 실패: ${error.message}`;
+    console.log(errorMessage);
+    return new Response(JSON.stringify({ error: errorMessage }), { status: 500, headers: jsonHeaders });
   }
 };
