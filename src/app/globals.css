@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  line-height: 1.6;
+  line-height: 1.5;
   background-color: #f9f9f9;
   color: #333;
 }
@@ -17,20 +17,34 @@ body {
 
 .title {
   text-align: center;
+  line-height: 1.3;
   font-size: 2.4rem;
   color: #333;
   margin-bottom: 10px;
 }
 
 .searchInput {
-  display: block;
   width: 100%;
-  max-width: 400px;
-  margin: 10px auto 20px;
+  max-width: 83%;
+  margin: 10px 0px 10px 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem;
+}
+
+.searchButton {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 10px 3.5%;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #005bb5;
 }
 
 .newsList {
@@ -86,15 +100,25 @@ body {
   }
 
   .searchInput {
-    width: 90%;
-    max-width: 350px;
-    margin: 8px auto 16px;
+    width: 100%;
+    max-width: 83%;
+    margin: 8px 0px 8px 8px;
     padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .searchButton {
+    margin-left: 8px;
+    padding: 8px 3%;
     font-size: 0.9rem;
   }
 
   .newsCard {
     padding: 10px;
+  }
+
+  .link {
+    font-size: 0.9rem;
   }
 
   .description {
@@ -117,15 +141,25 @@ body {
   }
 
   .searchInput {
-    width: 80%;
-    max-width: 300px;
-    margin: 6px auto 12px;
+    width: 100%;
+    max-width: 78%;
+    margin: 6px 0px 6px 6px;
     padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .searchButton {
+    margin-left: 6px;
+    padding: 6px 2.5%;
     font-size: 0.8rem;
   }
 
   .newsCard {
     padding: 6px;
+  }
+
+  .link {
+    font-size: 0.8rem;
   }
 
   .description {
