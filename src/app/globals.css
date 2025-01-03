@@ -79,6 +79,19 @@ body {
   color: #555;
 }
 
+.paginationButton {
+  margin: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.paginationButton.active {
+  background: #0070f3;
+  color: #fff;
+}
+
 .loading,
 .error {
   text-align: center;
@@ -130,6 +143,11 @@ body {
     font-size: 0.8rem;
   }
 
+  .paginationButton {
+    margin: 7px;
+    padding: 3.5px 7px;
+  }
+
   .loading,
   .error {
     font-size: 1rem;
@@ -174,6 +192,11 @@ body {
 
   .description {
     font-size: 0.7rem;
+  }
+
+  .paginationButton {
+    margin: 5px;
+    padding: 2.5px 5px;
   }
 
   .loading,
