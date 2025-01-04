@@ -1,1 +1,0 @@
-export const removeHtmlTagsRegex = /<[^>]*>?/gm;
