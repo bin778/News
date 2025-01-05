@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { fetchNews } from './api/api.js';
 import { NewsList } from './component/NewsList.js';
 import { Pagination } from './component/Pagination.js';
@@ -9,23 +9,17 @@ import { useSearchKeyword } from './hooks/useSearchKeyword.js';
 import { ERROR_MESSAGE } from './constant/error.js';
 import { DATA } from './constant/data.js';
 
-const Home = () => {
+const useNewsLoader = (page, appliedKeyword, setTimeoutOccurred) => {
   const [state, setState] = useState({ news: [], loading: false, error: null });
-  const [page, setPage] = useState(1);
-  const [appliedKeyword, setAppliedKeyword] = useState('');
-  const [timeoutOccurred, setTimeoutOccurred] = useState(false);
-  const { searchKeyword, handleSearchChange } = useSearchKeyword();
   const cache = useRef({});
   const loadingRef = useRef(false);
 
-  const loadNews = async () => {
-    if (loadingRef.current || timeoutOccurred) return;
-    loadingRef.current = true;
+  const loadNews = useCallback(async () => {
+    if (loadingRef.current) return;
 
     const cacheKey = `${page}-${appliedKeyword}`;
     if (cache.current[cacheKey]) {
       setState({ news: cache.current[cacheKey], loading: false, error: null });
-      loadingRef.current = false;
       return;
     }
 
@@ -34,7 +28,6 @@ const Home = () => {
       if (loadingRef.current) {
         setState({ news: [], loading: false, error: ERROR_MESSAGE.API.loading });
         setTimeoutOccurred(true);
-        loadingRef.current = false;
       }
     }, DATA.TIME.request);
 
@@ -49,17 +42,29 @@ const Home = () => {
       loadingRef.current = false;
       clearTimeout(timeout);
     }
-  };
+  }, [page, appliedKeyword, setTimeoutOccurred]);
+
+  return { state, loadNews };
+};
+
+const Home = () => {
+  const [page, setPage] = useState(1);
+  const [appliedKeyword, setAppliedKeyword] = useState('');
+  const [timeoutOccurred, setTimeoutOccurred] = useState(false);
+  const { searchKeyword, handleSearchChange } = useSearchKeyword();
+  const { state, loadNews } = useNewsLoader(page, appliedKeyword, setTimeoutOccurred);
 
   useEffect(() => {
-    loadNews();
-  }, [page, appliedKeyword]);
+    if (!timeoutOccurred) loadNews();
+  }, [page, appliedKeyword, timeoutOccurred, loadNews]);
 
   const handleSearchApply = () => {
     setAppliedKeyword(searchKeyword);
   };
 
-  if (timeoutOccurred || state.error) return <p className="error">{state.error || ERROR_MESSAGE.API.loading}</p>;
+  if (timeoutOccurred || state.error) {
+    return <p className="error">{state.error || ERROR_MESSAGE.API.loading}</p>;
+  }
 
   return (
     <div className="container">
