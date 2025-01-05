@@ -4,4 +4,8 @@ export const DATA = Object.freeze({
     page: 10,
     start: 1,
   }),
+  QUERY: Object.freeze({
+    keyword: '뉴스',
+    page: 1,
+  }),
 });
