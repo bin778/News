@@ -8,4 +8,7 @@ export const DATA = Object.freeze({
     keyword: '뉴스',
     page: 1,
   }),
+  TIME: Object.freeze({
+    request: 10000,
+  }),
 });
