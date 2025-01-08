@@ -43,5 +43,6 @@
 #### 모바일
 ![image](https://github.com/user-attachments/assets/c422277b-2016-46e1-b0af-7a783edd5f22)
 
-
+#### 실행 영상
+![News](https://github.com/user-attachments/assets/e3013f91-9a21-4981-809d-d6660fb6e35b)
 
